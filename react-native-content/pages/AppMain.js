@@ -14,7 +14,7 @@ import TabNavigator from 'react-native-tab-navigator';
 
 import Home from './Home';
 import Order from './Home';
-import Center from './Home';
+import Center from './Center';
 
 export default class AppMain extends Component {
     constructor(props) {

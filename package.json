@@ -10,6 +10,8 @@
   "author": "shenyiya",
   "license": "ISC",
   "dependencies": {
+    "antd-mobile": "^1.0.8",
+    "antd-mobile-demo-data": "^0.1.4",
     "fetch-http-client": "0.0.3",
     "leancloud-storage": "^1.3.2",
     "react": "^15.4.1",
@@ -28,5 +30,7 @@
     "redux-thunk": "^2.1.0",
     "rn-viewpager": "^1.1.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-plugin-import": "^1.1.1"
+  }
 }
