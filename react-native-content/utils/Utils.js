@@ -25,7 +25,7 @@ var Utils = {
 
         var uuid = s.join("");
         return uuid;
-    }
+    },
 
 }
 module.exports = Utils;
