@@ -13,8 +13,8 @@ import {
 import TabNavigator from 'react-native-tab-navigator';
 
 import Home from './Home';
-import Order from './Home';
-import Center from './Center';
+import Message from './Message';
+import Personal from './Personal';
 
 export default class AppMain extends Component {
     constructor(props) {
@@ -47,7 +47,7 @@ export default class AppMain extends Component {
                     renderSelectedIcon={() => <Image source={require("../imgs/ic_tab_order_press.png")}
                                                      style={styles.iconStyle}/>}
                     onPress={() => this.setState({selectedTab: 'order'})}>
-                    <Order {...this.props}/>
+                    <Message {...this.props}/>
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     title="我的"
@@ -58,7 +58,7 @@ export default class AppMain extends Component {
                     renderSelectedIcon={() => <Image source={require("../imgs/ic_tab_center_press.png")}
                                                      style={styles.iconStyle}/>}
                     onPress={() => this.setState({selectedTab: 'center'})}>
-                    <Center {...this.props}/>
+                    <Personal {...this.props}/>
                 </TabNavigator.Item>
             </TabNavigator>
         );
