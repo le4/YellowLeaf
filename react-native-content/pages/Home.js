@@ -13,7 +13,7 @@ import{
     TextInput
 } from 'react-native';
 
-import Search from './Search';
+import JobDetail from './JobDetail';
 
 import Icon from 'react-native-vector-icons/EvilIcons';
 
@@ -69,7 +69,7 @@ export default class Home extends Component {
 
     _renderRow(rowData, selectionId, rowId) {
         return (
-            <TouchableOpacity onPress={() => this.onButtonClick('第一页')}>
+            <TouchableOpacity onPress={() => this.onButtonClick('第一页')} activeOpacity={0.5}>
                 <View style={styles.list_item} key={Utils.getComponentKey()}>
                     <Text style={{
                         width: 96 * k,
@@ -111,8 +111,8 @@ export default class Home extends Component {
     onButtonClick(tag) {
         InteractionManager.runAfterInteractions(() => {
             this.props.navigator.push({
-                component: Search,
-                name: 'Search',
+                component: JobDetail,
+                name: 'JobDetail',
             });
         });
 

@@ -17,9 +17,6 @@ import{
     TextInput
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/EvilIcons';
-import Icon1 from 'react-native-vector-icons/Ionicons';
-
 import Utils from '../utils/Utils'
 var deviceWidth = Utils.getScreenWidth();
 var k = Utils.getAutoScaleHeight();

@@ -14,7 +14,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-import Search from './Search';
+import Search from './JobDetail';
 
 export default class FirstPage extends Component {
     // 填出提示框
