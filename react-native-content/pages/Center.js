@@ -1,20 +1,51 @@
-/**
- * Created by android on 2017/4/17.
- */
+'use strict';
 import React, {Component} from 'react';
-import {AppRegistry} from 'react-native';
-import {Button, Picker, List} from 'antd-mobile';
+import{
+    View,
+    Text,
+    Dimensions,
+    Image,
+    StyleSheet,
+    TouchableOpacity,
+    ScrollView,
+    InteractionManager,
+    ListView,
+    TextInput
+} from 'react-native';
 
-import {district, provinceLite as province} from 'antd-mobile-demo-data';
+import TitleView from '../ui/TitleView'
 
-export default class HelloWorldApp extends Component {
-    render() {
+export default class MyProfile extends Component {
 
-        return (
-            <List style={{backgroundColor: 'white'}} className="picker-list">
-                <Picker data={district} cols={1} className="forss">
-                    <List.Item arrow="horizontal">选择地区（单列）</List.Item>
-                </Picker>
-            </List>);
+    //构造函数
+    constructor(props) {
+        super(props);
+
     }
+
+    //想要显示的页面一定是在这个函数中写出来
+    render() {
+        return (
+            <View>
+                <TitleView title="我的简历"/>
+                <View style={{flexDirection: "row"}}>
+                    <Text style={{
+                        width: 200,
+                        height: 200,
+                        backgroundColor: "#f35353",
+                        color: "#fff",
+                        fontSize: 24,
+                        borderRadius: 10,
+                        marginLeft: 36,
+                        marginTop: 36,
+                        textAlign: "center",
+                        textAlignVertical: "center"
+                    }}>布局1</Text>
+                    <Text>布局2</Text>
+                </View>
+            </View>
+        );
+
+    }
+
 }

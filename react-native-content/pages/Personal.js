@@ -14,11 +14,14 @@ import{
     ScrollView,
     InteractionManager,
     ListView,
-    TextInput
+    TextInput,
+    Platform,
+    BackAndroid,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Icon1 from 'react-native-vector-icons/Ionicons';
+import Center from '../pages/Center';
 
 import Utils from '../utils/Utils'
 var deviceWidth = Utils.getScreenWidth();
@@ -29,6 +32,41 @@ export default class Personal extends Component {
 
     constructor(props) {
         super(props);
+        this.onButtonClick = this.onButtonClick.bind(this); //注册函数
+    }
+
+    //下面的三个函数作用是为了解决Android平台下 点击返回按键 返回到上个页面
+    componentWillMount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+
+    componentWillUnmount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+
+    onBackAndroid = () => {
+        const nav = this.props.navigator;
+        const routers = nav.getCurrentRoutes();
+        if (routers.length > 1) {
+            nav.pop();
+            return true;
+        }
+        return false;
+    };
+
+
+    //点击事件
+    onButtonClick() {
+        InteractionManager.runAfterInteractions(() => {
+            this.props.navigator.push({
+                component: Center,
+                name: 'center',
+            });
+        });
     }
 
     render() {
@@ -39,13 +77,15 @@ export default class Personal extends Component {
                     <Icon name="user" size={170 * k} color="#fff"/>
                     <Text style={{fontSize: 30 * k, color: "#fff", marginTop: 10 * k}}>YiYaShen</Text>
                 </View>
-                <View style={styles.item}>
-                    <Icon name="pencil" size={50 * k} color="#6f6c6c"
-                          style={{marginLeft: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
-                    <Text style={styles.itemText}>我的简历</Text>
-                    <Icon1 name="ios-arrow-forward" size={40 * k} color="#6f6c6c"
-                           style={{marginRight: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
-                </View>
+                <TouchableOpacity onPress={() => this.onButtonClick('第一页')} activeOpacity={0.5}>
+                    <View style={styles.item}>
+                        <Icon name="pencil" size={50 * k} color="#6f6c6c"
+                              style={{marginLeft: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
+                        <Text style={styles.itemText}>我的简历</Text>
+                        <Icon1 name="ios-arrow-forward" size={40 * k} color="#6f6c6c"
+                               style={{marginRight: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
+                    </View>
+                </TouchableOpacity>
                 <View style={styles.dividerLine}/>
                 <View style={styles.item}>
                     <Icon name="star" size={50 * k} color="#6f6c6c"
@@ -67,7 +107,7 @@ export default class Personal extends Component {
                 <View style={styles.item}>
                     <Icon name="share-apple" size={50 * k} color="#6f6c6c"
                           style={{marginLeft: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
-                    <Text style={styles.itemText}>我的投递</Text>
+                    <Text style={styles.itemText}>解绑手机</Text>
                     <Icon1 name="ios-arrow-forward" size={40 * k} color="#6f6c6c"
                            style={{marginRight: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
                 </View>
