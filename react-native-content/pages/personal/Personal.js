@@ -21,9 +21,9 @@ import{
 
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Icon1 from 'react-native-vector-icons/Ionicons';
-import Center from '../pages/Center';
+import SystemSetting from './SystemSetting';
 
-import Utils from '../utils/Utils'
+import Utils from '../../utils/Utils'
 var deviceWidth = Utils.getScreenWidth();
 var k = Utils.getAutoScaleHeight();
 
@@ -60,13 +60,25 @@ export default class Personal extends Component {
 
 
     //点击事件
-    onButtonClick() {
-        InteractionManager.runAfterInteractions(() => {
-            this.props.navigator.push({
-                component: Center,
-                name: 'center',
+    onButtonClick(flag) {
+        if (flag == "systemSetting") { //系统设置
+            InteractionManager.runAfterInteractions(() => {
+                this.props.navigator.push({
+                    component: SystemSetting,
+                    name: 'systemSetting',
+                });
             });
-        });
+        } else if (flag == "myProfile") { //我的简历
+            InteractionManager.runAfterInteractions(() => {
+                this.props.navigator.push({
+                    component: Center,
+                    name: 'center',
+                });
+            });
+        } else if (flag == "myFav") { //我的收藏
+
+        }
+
     }
 
     render() {
@@ -77,7 +89,7 @@ export default class Personal extends Component {
                     <Icon name="user" size={170 * k} color="#fff"/>
                     <Text style={{fontSize: 30 * k, color: "#fff", marginTop: 10 * k}}>YiYaShen</Text>
                 </View>
-                <TouchableOpacity onPress={() => this.onButtonClick('第一页')} activeOpacity={0.5}>
+                <TouchableOpacity onPress={() => this.onButtonClick('myProfile')} activeOpacity={0.5}>
                     <View style={styles.item}>
                         <Icon name="pencil" size={50 * k} color="#6f6c6c"
                               style={{marginLeft: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
@@ -87,13 +99,15 @@ export default class Personal extends Component {
                     </View>
                 </TouchableOpacity>
                 <View style={styles.dividerLine}/>
-                <View style={styles.item}>
-                    <Icon name="star" size={50 * k} color="#6f6c6c"
-                          style={{marginLeft: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
-                    <Text style={styles.itemText}>我的收藏</Text>
-                    <Icon1 name="ios-arrow-forward" size={40 * k} color="#6f6c6c"
-                           style={{marginRight: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
-                </View>
+                <TouchableOpacity onPress={() => this.onButtonClick('myFav')} activeOpacity={0.5}>
+                    <View style={styles.item}>
+                        <Icon name="star" size={50 * k} color="#6f6c6c"
+                              style={{marginLeft: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
+                        <Text style={styles.itemText}>我的收藏</Text>
+                        <Icon1 name="ios-arrow-forward" size={40 * k} color="#6f6c6c"
+                               style={{marginRight: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
+                    </View>
+                </TouchableOpacity>
                 <View style={styles.dividerLine}/>
                 <View style={styles.item}>
                     <Icon name="share-apple" size={50 * k} color="#6f6c6c"
@@ -112,13 +126,15 @@ export default class Personal extends Component {
                            style={{marginRight: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
                 </View>
                 <View style={styles.dividerLine}/>
-                <View style={styles.item}>
-                    <Icon name="gear" size={50 * k} color="#6f6c6c"
-                          style={{marginLeft: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
-                    <Text style={styles.itemText}>系统设置</Text>
-                    <Icon1 name="ios-arrow-forward" size={40 * k} color="#6f6c6c"
-                           style={{marginRight: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
-                </View>
+                <TouchableOpacity onPress={() => this.onButtonClick('systemSetting')} activeOpacity={0.5}>
+                    <View style={styles.item}>
+                        <Icon name="gear" size={50 * k} color="#6f6c6c"
+                              style={{marginLeft: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
+                        <Text style={styles.itemText}>系统设置</Text>
+                        <Icon1 name="ios-arrow-forward" size={40 * k} color="#6f6c6c"
+                               style={{marginRight: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
+                    </View>
+                </TouchableOpacity>
 
             </View>);
 

@@ -13,8 +13,7 @@ import {
     Navigator
 } from 'react-native';
 
-import FirstPage from  './pages/First';
-import AppMain from  './pages/AppMain';
+import AppMain from  './pages/home/AppMain';
 
 // 主模块
 export default class App extends Component {
