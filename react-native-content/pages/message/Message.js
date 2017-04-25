@@ -21,6 +21,7 @@ import Utils from '../../utils/Utils'
 var deviceWidth = Utils.getScreenWidth();
 var k = Utils.getAutoScaleHeight();
 
+import SiftListControl from '../../ui/SiftListControl';
 
 export default class Personal extends Component {
 
@@ -65,6 +66,7 @@ export default class Personal extends Component {
                 <View style={styles.title}>
                     <Text style={{fontSize: 36 * k, color: "#fff"}}>消息</Text>
                 </View>
+                <SiftListControl />
                 <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
                     <ListView
                         style={{marginTop: 60 * k,}}
