@@ -12,6 +12,7 @@ import{
     TouchableOpacity,
     ScrollView,
     InteractionManager,
+    TextInput
 } from 'react-native';
 
 import Constant from '../utils/Constant'
@@ -29,6 +30,7 @@ export default class TitleView extends Component {
         super(props)
         this.title = this.props.title;
         this.showShare = this.props.showShare;
+        this.isSearch = this.props.isSearch;
     }
 
     render() {
@@ -43,8 +45,8 @@ export default class TitleView extends Component {
             this.shareIcon = <View />;
         }
 
-        return (
-            <View style={{
+        if (!this.isSearch) { //是不是搜索标题栏
+            return (<View style={{
                 height: Constant.titleHeight,
                 width: deviceWidth,
                 backgroundColor: Constant.mainColor,
@@ -65,6 +67,43 @@ export default class TitleView extends Component {
                 }}>{this.title}</Text>
                 {this.shareIcon}
             </View>);
+        } else {
+            return (
+                <View style={{
+                    height: Constant.titleHeight,
+                    width: deviceWidth,
+                    backgroundColor: Constant.mainColor,
+                    flexDirection: "row",
+                    alignItems: "center",
+                }}>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigator.pop()}>
+                        <Icon name="ios-arrow-back" size={50 * k} color="#fff"
+                              style={{marginLeft: 36 * k}}/>
+                    </TouchableOpacity>
+                    <View style={{
+                        width: 550 * k,
+                        backgroundColor: "#fff",
+                        height: 50 * k,
+                        alignItems: "center",
+                        borderRadius: 35 * k,
+                        marginLeft: 50 * k,
+                        flexDirection: "row",
+                    }}>
+                        <Icon1 name="search" size={50 * k} color="#6f6c6c" style={{marginLeft: 120 * k,}}/>
+                        <TextInput
+                            style={{
+                                width: 500 * k,
+                                fontSize: 22 * k,
+                                color: "#6f6c6c",
+                                height: 70 * k,
+                            }}
+                            placeholder={'搜索职位/公司'}
+                            underlineColorAndroid="transparent"
+                        />
+                    </View>
+                </View>);
+        }
     }
 
 }

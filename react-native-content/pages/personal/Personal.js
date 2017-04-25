@@ -119,7 +119,7 @@ export default class Personal extends Component {
                 <View style={styles.dividerLine}/>
                 <View style={{height: 30 * k}}/>
                 <View style={styles.item}>
-                    <Icon name="share-apple" size={50 * k} color="#6f6c6c"
+                    <Icon1 name="ios-build-outline" size={50 * k} color="#6f6c6c"
                           style={{marginLeft: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
                     <Text style={styles.itemText}>解绑手机</Text>
                     <Icon1 name="ios-arrow-forward" size={40 * k} color="#6f6c6c"
