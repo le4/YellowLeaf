@@ -25,7 +25,12 @@ var Utils = {
 
         var uuid = s.join("");
         return uuid;
-    },
+    }, isTextEmpty(data){
+        if (data == "" || data == undefined || data == null) {
+            return true;
+        }
+        return false;
+    }
 
 }
 module.exports = Utils;

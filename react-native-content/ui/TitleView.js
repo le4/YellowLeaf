@@ -31,10 +31,14 @@ export default class TitleView extends Component {
         this.title = this.props.title;
         this.showShare = this.props.showShare;
         this.isSearch = this.props.isSearch;
+        this.hintText = this.props.hintText;
     }
 
     render() {
 
+        if (Utils.isTextEmpty(this.hintText)) {
+            this.hintText = "搜索职位/公司";
+        }
         if (this.showShare) {
             this.shareIcon = <TouchableOpacity
                 onPress={() => this.props.navigator.pop()}>
@@ -98,7 +102,7 @@ export default class TitleView extends Component {
                                 color: "#6f6c6c",
                                 height: 70 * k,
                             }}
-                            placeholder={'搜索职位/公司'}
+                            placeholder={this.hintText}
                             underlineColorAndroid="transparent"
                         />
                     </View>

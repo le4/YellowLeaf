@@ -54,6 +54,7 @@ const CENTER_IMGS = [
 ];
 
 import PartJob from "../../pages/home/PartJob";
+import PartStudy from "../../pages/home/PartStudy";
 
 export default class Home extends Component {
 
@@ -82,12 +83,18 @@ export default class Home extends Component {
             case 0:
                 InteractionManager.runAfterInteractions(() => {
                     this.props.navigator.push({
-                        component: PartJob,
-                        name: 'partJob',
+                        component: PartStudy,
+                        name: 'partStudy',
                     });
                 });
                 break;
             case 1:
+                InteractionManager.runAfterInteractions(() => {
+                    this.props.navigator.push({
+                        component: PartJob,
+                        name: 'partJob',
+                    });
+                });
                 break;
             case 2:
                 break;

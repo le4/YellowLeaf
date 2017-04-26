@@ -221,10 +221,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         height: 32,
-        borderRightColor: "#000",
+        borderRightColor: "#999",
         borderRightWidth: 0.5,
-        borderBottomColor: "#000",
+        borderBottomColor: "#999",
         borderBottomWidth: 0.5,
+        borderTopColor: "#999",
+        borderTopWidth: 0.5,
     },
     buttonText: {
         fontSize: 13,
@@ -242,6 +244,8 @@ const styles = StyleSheet.create({
         borderRightColor: "#999",
         borderRightWidth: 0.5,
         borderLeftColor: "#999",
+        borderTopColor: "#999",
+        borderTopWidth: 0.5,
         borderLeftWidth: 0.5,
     },
     loading: {
