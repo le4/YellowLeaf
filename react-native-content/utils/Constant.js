@@ -10,6 +10,11 @@ var k = Utils.getAutoScaleHeight();
 var Constant = {
     titleHeight: 80 * k,
     mainColor: "#26b484",
+    errorColor: "#d9534f",
+    successColor: "#5cb85c",
+    primaryColor: "#337ab7",
+    warningColor: "#f0ad4e",
+    infoColor: "#5bc0de",
     jobDetail: "岗位职责:\r\n1.负责接送孩子下学,保证孩子安全; \r\n2.保证孩子的作业准时完成,并进行学习指导 ; \r\n" +
     "3.做好课班管理,传授课外拓展知识; \r\n4.观察孩子学习情况,每天与家长沟通,反馈孩子表现,提供 学习建议; " +
     "\r\n5.周末或者假期外出写生班(国内或者国外)。\r\n" +

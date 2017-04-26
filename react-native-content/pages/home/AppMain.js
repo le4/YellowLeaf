@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 
 import TabNavigator from 'react-native-tab-navigator';
+import Constant from '../../utils/Constant';
 
 import Home from './Home';
 import Message from '../message/Message';
@@ -68,8 +69,8 @@ export default class AppMain extends Component {
                     selected={this.state.selectedTab === 'order'}
                     selectedTitleStyle={styles.selectedTextStyle}
                     titleStyle={styles.textStyle}
-                    renderIcon={() => <Image source={require("../../imgs/ic_tab_order.png")} style={styles.iconStyle}/>}
-                    renderSelectedIcon={() => <Image source={require("../../imgs/ic_tab_order_press.png")}
+                    renderIcon={() => <Image source={require("../../imgs/ic_tab_message.png")} style={styles.iconStyle}/>}
+                    renderSelectedIcon={() => <Image source={require("../../imgs/ic_tab_message_press.png")}
                                                      style={styles.iconStyle}/>}
                     onPress={() => this.setState({selectedTab: 'order'})}>
                     <Message {...this.props}/>
@@ -79,7 +80,8 @@ export default class AppMain extends Component {
                     selected={this.state.selectedTab === 'center'}
                     selectedTitleStyle={styles.selectedTextStyle}
                     titleStyle={styles.textStyle}
-                    renderIcon={() => <Image source={require("../../imgs/ic_tab_center.png")} style={styles.iconStyle}/>}
+                    renderIcon={() => <Image source={require("../../imgs/ic_tab_center.png")}
+                                             style={styles.iconStyle}/>}
                     renderSelectedIcon={() => <Image source={require("../../imgs/ic_tab_center_press.png")}
                                                      style={styles.iconStyle}/>}
                     onPress={() => this.setState({selectedTab: 'center'})}>
@@ -98,6 +100,6 @@ const styles = StyleSheet.create({
         color: '#999',
     },
     selectedTextStyle: {
-        color: 'black',
+        color: Constant.mainColor,
     }
 });
