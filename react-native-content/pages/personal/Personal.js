@@ -23,6 +23,7 @@ import Icon from 'react-native-vector-icons/EvilIcons';
 import Icon1 from 'react-native-vector-icons/Ionicons';
 import SystemSetting from './SystemSetting';
 import MyProfile from './MyProfile';
+import MySend from './MySend';
 
 import Utils from '../../utils/Utils'
 var deviceWidth = Utils.getScreenWidth();
@@ -78,6 +79,13 @@ export default class Personal extends Component {
             });
         } else if (flag == "myFav") { //我的收藏
 
+        } else if (flag =="mySend") { //我的投递
+            InteractionManager.runAfterInteractions(() => {
+                this.props.navigator.push({
+                    component: MySend,
+                    name: 'MySend',
+                });
+            });
         }
 
     }
@@ -110,6 +118,7 @@ export default class Personal extends Component {
                     </View>
                 </TouchableOpacity>
                 <View style={styles.dividerLine}/>
+                <TouchableOpacity onPress={() => this.onButtonClick('mySend')} activeOpacity={0.5}>
                 <View style={styles.item}>
                     <Icon name="share-apple" size={50 * k} color="#6f6c6c"
                           style={{marginLeft: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
@@ -117,6 +126,7 @@ export default class Personal extends Component {
                     <Icon1 name="ios-arrow-forward" size={40 * k} color="#6f6c6c"
                            style={{marginRight: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
                 </View>
+                </TouchableOpacity>
                 <View style={styles.dividerLine}/>
                 <View style={{height: 30 * k}}/>
                 <View style={styles.item}>
