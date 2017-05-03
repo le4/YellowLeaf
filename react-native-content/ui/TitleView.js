@@ -67,8 +67,10 @@ export default class TitleView extends Component {
                     color: "#fff",
                     textAlign: "center",
                     justifyContent: "center",
-                    flex: 1
-                }}>{this.title}</Text>
+                    flex: 1,
+                    marginLeft: 60 * k,
+                    marginRight: 60 * k
+                }} numberOfLines={1}>{this.title}</Text>
                 {this.shareIcon}
             </View>);
         } else {

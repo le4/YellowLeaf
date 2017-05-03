@@ -22,32 +22,46 @@ var deviceWidth = Utils.getScreenWidth();
 var k = Utils.getAutoScaleHeight();
 
 
-export default class Personal extends Component {
+import MessageDetail from '../../pages/message/MessageDetail';
+
+export default class Message extends Component {
 
     constructor(props) {
         super(props);
         this._renderRow = this._renderRow.bind(this);
         this._renderSeparator = this._renderSeparator.bind(this);
+        this.onButtonClick = this.onButtonClick.bind(this);
         this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             dataSource: this.ds.cloneWithRows(['row 1', 'row 2']),
         };
     }
 
+    onButtonClick(tag) {
+        InteractionManager.runAfterInteractions(() => {
+            this.props.navigator.push({
+                component: MessageDetail,
+                name: 'messageDetail',
+            });
+        });
+
+    }
 
     _renderRow(rowData, selectionId, rowId) {
         return (
-            <View style={styles.item}>
-                <Text style={styles.itemTitle} numberOfLines={1}>我是标题我是标题我是标题</Text>
-                <Image style={styles.itemImage} source={{
-                    uri: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_' +
-                    '10000&sec=1493030204829&di=9f612acc68fc687cce7ac1972f8f1aad' +
-                    '&imgtype=0&src=http%3A%2F%2Fww1.sinaimg.cn%2Flarge%2Fb07d76b4jw1dwje6sv8eaj.jpg'
-                }}/>
-                <Text style={styles.itemDesc} numberOfLines={2}>我是描述我是描述我是描述我是描述我是描述我是描述述我是描述述我是描述</Text>
-                <View style={styles.dividerLine}/>
-                <Text style={styles.itemDesc}>阅读原文</Text>
-            </View>
+            <TouchableOpacity onPress={() => this.onButtonClick('messageDetail')} activeOpacity={0.5}>
+                <View style={styles.item}>
+                    <Text style={styles.itemTitle} numberOfLines={1}>我是标题我是标题我是标题</Text>
+                    <Image style={styles.itemImage} source={{
+                        uri: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_' +
+                        '10000&sec=1493030204829&di=9f612acc68fc687cce7ac1972f8f1aad' +
+                        '&imgtype=0&src=http%3A%2F%2Fww1.sinaimg.cn%2Flarge%2Fb07d76b4jw1dwje6sv8eaj.jpg'
+                    }}/>
+                    <Text style={styles.itemDesc} numberOfLines={2}>我是描述我是描述我是描述我是描述我是描述我是描述述我是描述述我是描述</Text>
+                    <View style={styles.dividerLine}/>
+                    <Text style={styles.itemDesc}>阅读原文</Text>
+                </View>
+            </TouchableOpacity>
         );
     }
 
