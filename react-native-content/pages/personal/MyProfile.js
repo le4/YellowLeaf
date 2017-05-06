@@ -17,7 +17,7 @@ import{
     TextInput,
     Platform,
     BackAndroid,
-    TitleView
+
 } from 'react-native';
 
 
