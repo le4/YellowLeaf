@@ -26,7 +26,7 @@ import Icon1 from 'react-native-vector-icons/EvilIcons';
 import Icon2 from 'react-native-vector-icons/Ionicons';
 
 
-import Utils from '../../utils/Utils'
+import Utils from '../../utils/Utils';
 import TitleView from '../../ui/TitleView';
 
 
@@ -38,34 +38,48 @@ export default class UnitDetail extends Component {
     //构造函数
     constructor(props) {
         super(props);
-        this._renderRow = this._renderRow.bind(this);
-        this._renderSeparator = this._renderSeparator.bind(this);
+
         this.dataSourceList = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             dataSourceList: this.dataSourceList.cloneWithRows(["0", "1", "2", "3", "4", "5"]),
         }
+
+        this._renderRow = this._renderRow.bind(this);
+        this._renderSeparator = this._renderSeparator.bind(this);
+
     }
     _renderSeparator(sectionID, rowID) {
         return (
             <View key={Utils.getComponentKey()}
-                  style={{backgroundColor: "#e4dede", height: 1 * k, marginLeft: 137 * k}}/>
+                  style={{backgroundColor: "#e4dede", height: 1 * k, marginLeft: 36 * k}}/>
         );
     }
     _renderRow(data, selectionId, RowId){
         return (
             <TouchableOpacity onPress={() => this.onButtonClick('第一页')} activeOpacity={0.5}>
                 <View style={styles.list_item} key={Utils.getComponentKey()}>
-                    <View style={{flexDirection: "column", marginLeft: 21 * k, width: 460 * k}}>
+                    <View style={{flexDirection: "column", marginLeft: 21 * k, width: 590 * k}}>
                         <Text style={{marginTop: 34 * k, fontSize: 30 * k, color: "#333333"}}>家电导购</Text>
                         <Text style={{marginTop: 15 * k, fontSize: 26 * k, color: "#999999"}} numberOfLines={1}>卖海尔洗衣机,冰箱</Text>
-
-
+                        <View style={{flexDirection: "row"}}>
+                            <Icon1 name="location" size={35 * k} color="#333333"
+                                style={{marginBottom: 35 * k, marginTop: 15 * k}}/>
+                            <Text
+                                style={{
+                                    fontSize: 26 * k,
+                                    color: "#999999",
+                                    marginLeft: 8 * k,
+                                    marginTop: 13 * k
+                                }}>西城</Text>
+                        </View>
                     </View>
-
-
+                    <View style={{flexDirection: "column", marginLeft: 21 * k, alignItems: "flex-end"}}>
+                        <Text style={{marginTop: 30 * k, fontSize: 30 * k, color: "#f35353"}}>1200/月</Text>
+                        <Text style={{marginTop: 65 * k, fontSize: 26 * k, color: "#999999"}}>2月20日</Text>
+                    </View>
                 </View>
-
-            )
+            </TouchableOpacity>
+        );
     }
 
     componentWillMount() {
@@ -143,11 +157,11 @@ export default class UnitDetail extends Component {
                         }}>
                             <Text style={{marginLeft: 40 * k, marginTop: 15 * k, color: "#333333", fontSize: 30 * k}}>招聘职位</Text>
                         </View>
-                        <View>
-
-                        </View>
-
-
+                        <ListView
+                            dataSource={this.state.dataSourceList}
+                            renderRow={this._renderRow}
+                            renderSeparator={this._renderSeparator}
+                        />
                     </View>
                 </ScrollView>
             </View>
@@ -177,6 +191,10 @@ const styles = StyleSheet.create({
         marginTop: 20 * k,
         lineHeight: 20,
     },
+    list_item: {
+        backgroundColor: "#fff",
+        flexDirection: "row"
+    }
 
 });
 
