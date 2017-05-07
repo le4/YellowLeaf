@@ -17,7 +17,7 @@ import{
     TextInput,
     Platform,
     BackAndroid,
-    TitleView
+
 } from 'react-native';
 
 
@@ -231,6 +231,13 @@ const styles = StyleSheet.create({
     titleText1: {
         fontSize: 24 * k,
         color: "#FE0707",
+        width: 68 * k,
+        height: 36 * k,
+        backgroundColor: "#fff",
+        borderColor: "#FE0707",
+        borderRadius: 20 * k,
+        textAlign: "center",
+        textAlignVertical: "center",
         marginLeft: 50 * k,
         marginTop: 80 * k,
         marginBottom: 30 * k,
