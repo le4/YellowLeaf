@@ -58,7 +58,7 @@ export default class UnitDetail extends Component {
         return (
             <TouchableOpacity onPress={() => this.onButtonClick('第一页')} activeOpacity={0.5}>
                 <View style={styles.list_item} key={Utils.getComponentKey()}>
-                    <View style={{flexDirection: "column", marginLeft: 21 * k, width: 590 * k}}>
+                    <View style={{flexDirection: "column", marginLeft: 21 * k, width: 570 * k}}>
                         <Text style={{marginTop: 34 * k, fontSize: 30 * k, color: "#333333"}}>家电导购</Text>
                         <Text style={{marginTop: 15 * k, fontSize: 26 * k, color: "#999999"}} numberOfLines={1}>卖海尔洗衣机,冰箱</Text>
                         <View style={{flexDirection: "row"}}>
@@ -74,7 +74,7 @@ export default class UnitDetail extends Component {
                         </View>
                     </View>
                     <View style={{flexDirection: "column", marginLeft: 21 * k, alignItems: "flex-end"}}>
-                        <Text style={{marginTop: 30 * k, fontSize: 30 * k, color: "#f35353"}}>1200/月</Text>
+                        <Text style={{marginTop: 30 * k, fontSize: 30 * k, color: "#f35353"}}>1200¥/月</Text>
                         <Text style={{marginTop: 65 * k, fontSize: 26 * k, color: "#999999"}}>2月20日</Text>
                     </View>
                 </View>
