@@ -21,6 +21,8 @@ import GridView from '../../ui/GridView';
 import TitleView from '../../ui/TitleView';
 import Utils from '../../utils/Utils';
 import Constant from '../../utils/Constant';
+import JobList from './JobList';
+import JobDetail from './JobDetail';
 
 import Icon from 'react-native-vector-icons/EvilIcons';
 
@@ -44,6 +46,24 @@ export default class PartJob extends Component {
         this._renderSeparator = this._renderSeparator.bind(this);
         this.onButtonClick = this.onButtonClick.bind(this);
         this.state = {}
+    }
+    //点击事件
+     onButtonClick(flag){
+         if (flag == "JobList"){
+             InteractionManager.runAfterInteractions(() => {
+                            this.props.navigator.push({
+                                component: JobList,
+                                name: 'JobList',
+                            });
+              });
+         } else if(flag == "JobDetail"){
+             InteractionManager.runAfterInteractions(() => {
+                             this.props.navigator.push({
+                                  component: JobDetail,
+                                  name: 'JobDetail',
+                             });
+                           });
+         }
     }
 
     componentWillMount() {
@@ -72,6 +92,7 @@ export default class PartJob extends Component {
         let margin = 36;
         let itemWidth = (deviceWidth - margin * 2) / 3;
         return (
+        <TouchableOpacity onPress={() => this.onButtonClick('JobList')} activeOpacity={0.5}>
             <View style={{
                 width: itemWidth,
                 backgroundColor: "#fff",
@@ -82,13 +103,16 @@ export default class PartJob extends Component {
             }}>
                 <Image style={{width: 80 * k, height: 80 * k}} source={require('../../imgs/icon_pratjob_1.png')}/>
                 <Text style={{fontSize: 26 * k, color: "#333", marginTop: 15 * k}}>描述</Text>
-            </View>);
+            </View>
+            </TouchableOpacity>
+            );
+
     }
 
 
     _renderRow(rowData, selectionId, rowId) {
         return (
-            <TouchableOpacity onPress={() => this.onButtonClick('第一页')} activeOpacity={0.5}>
+            <TouchableOpacity onPress={() => this.onButtonClick('JobDetail')} activeOpacity={0.5}>
                 <View style={styles.list_item} key={Utils.getComponentKey()}>
                     <View style={{flexDirection: "column", marginLeft: 36 * k, width: 560 * k,}}>
                         <Text style={{marginTop: 34 * k, fontSize: 30 * k, color: "#333333"}}>名称名称名称名称名称</Text>
@@ -112,16 +136,6 @@ export default class PartJob extends Component {
                 </View>
             </TouchableOpacity>
         );
-    }
-
-    onButtonClick(tag) {
-        InteractionManager.runAfterInteractions(() => {
-            this.props.navigator.push({
-                component: JobDetail,
-                name: 'JobDetail',
-            });
-        });
-
     }
 
     _renderSeparator(sectionID, rowID) {
