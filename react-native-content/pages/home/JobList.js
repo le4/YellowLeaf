@@ -21,8 +21,8 @@ import{
 
 import TitleView from '../../ui/TitleView';
 import Utils from '../../utils/Utils';
+import JobDetail from './JobDetail';
 import Icon from 'react-native-vector-icons/EvilIcons';
-import MyDeliver from './MyDeliver';
 var deviceWidth = Utils.getScreenWidth();
 
 var k = Utils.getAutoScaleHeight();
@@ -39,15 +39,14 @@ export default class MySend extends Component {
             dataSourceList: this.dataSourceList.cloneWithRows(["0", "1", "2", "3","4","5","6"]),
         }
     }
-    //点击事件
-     onButtonClick(flag){
-         if (flag == "SendDetail"){
+onButtonClick(flag){
+         if(flag == "JobDetail"){
              InteractionManager.runAfterInteractions(() => {
-                            this.props.navigator.push({
-                                component: MyDeliver,
-                                name: 'MyDeliver',
-                            });
-              });
+                             this.props.navigator.push({
+                                  component: JobDetail,
+                                  name: 'JobDetail',
+                             });
+                           });
          }
     }
 
@@ -59,7 +58,7 @@ export default class MySend extends Component {
     }
     _renderRow(data,selectionId,RowId){
         return(
-            <TouchableOpacity onPress={() => this.onButtonClick('SendDetail')} activeOpacity={0.5}>
+            <TouchableOpacity onPress={() => this.onButtonClick('JobDetail')} activeOpacity={0.5}>
                 <View style={styles.list_item} key={Utils.getComponentKey()}>
                     <View style={{flexDirection: "column", marginLeft: 35 * k, width: 460 * k,}}>
                         <Text style={{marginTop: 34 * k, fontSize: 30 * k, color: "#333333"}}>小学生托管带班老师</Text>
@@ -76,9 +75,9 @@ export default class MySend extends Component {
                                 }}>北京市朝阳区姚家园</Text>
                         </View>
                     </View>
-                    <View style={{flexDirection: "column", marginLeft: 15 * k, alignItems: "flex-end"}}>
+                    <View style={{flexDirection: "column", marginLeft: 100 * k, alignItems: "flex-end"}}>
                         <Text style={{marginTop: 30 * k, fontSize: 30 * k, color: "#f35353",}}>1200/月</Text>
-                        <Text style={{marginTop: 65 * k, fontSize: 26 * k, color: "#999999"}}>2月20日【已投递】</Text>
+                        <Text style={{marginTop: 65 * k, fontSize: 26 * k, color: "#999999"}}>2月20日</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -89,7 +88,7 @@ export default class MySend extends Component {
     render() {
         return (
             <View style={{backgroundColor: "#fff", flex: 1}}>
-                <TitleView title="我的投递" {...this.props} />
+                <TitleView title="兼职岗位" {...this.props} />
                 <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
                     <ListView
                         dataSource={this.state.dataSourceList}
