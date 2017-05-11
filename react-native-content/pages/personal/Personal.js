@@ -25,6 +25,8 @@ import SystemSetting from './SystemSetting';
 import MyProfile from './MyProfile';
 import MySend from './MySend';
 import MyInformation from './MyInformation';
+import Login from './Login';
+
 
 import Utils from '../../utils/Utils'
 var deviceWidth = Utils.getScreenWidth();
@@ -98,14 +100,29 @@ export default class Personal extends Component {
 
     }
 
+
     render() {
 
         return (
             <View style={{backgroundColor: "#f0f5f1", flex: 1}}>
                 <View style={styles.avatarBg}>
                     <Icon name="user" size={170 * k} color="#fff"/>
-                    <Text style={{fontSize: 30 * k, color: "#fff", marginTop: 10 * k}}>YiYaShen</Text>
+                    <View style={{flexDirection: "row"}}>
+                        <Text
+                            style={{color: "#fff", fontSize: 30 * k, marginTop: 10 * k,}}
+                            onPress={this.click.bind(this, "login")}
+                        >登录</Text>
+
+
+                        <Text style={{color: "#fff", fontSize: 30 * k, marginTop: 10 * k, }}>/</Text>
+                        <Text
+                            style={{color: "#fff", fontSize: 30 * k, marginTop: 10 * k,}}
+                            onPress={this.click.bind(this, "signup")}
+                        >注册</Text>
+                    </View>
                 </View>
+
+
                 <TouchableOpacity onPress={() => this.onButtonClick('myProfile')} activeOpacity={0.5}>
                     <View style={styles.item}>
                         <Icon name="pencil" size={50 * k} color="#6f6c6c"
@@ -161,6 +178,20 @@ export default class Personal extends Component {
 
             </View>);
 
+    }
+
+    click(flag) {
+        if (flag == "login") {
+            InteractionManager.runAfterInteractions(() => {
+                this.props.navigator.push({
+                    component: Login,
+                    name: 'Login',
+                });
+            });
+
+        } else if (flag == "signup") {
+
+        }
     }
 }
 const styles = StyleSheet.create({
