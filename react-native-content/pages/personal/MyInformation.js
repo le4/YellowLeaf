@@ -15,23 +15,28 @@ import {
     InteractionManager,
     ListView,
     TextInput,
+    TouchableHighlight,
     Platform,
     BackAndroid,
 } from 'react-native';
 
+import {Modal, Toast} from 'antd-mobile';
 import Icon1 from 'react-native-vector-icons/Ionicons';
-
 import Utils from '../../utils/Utils'
 import TitleView from "../../ui/TitleView";
+
 var deviceWidth = Utils.getScreenWidth();
 var k = Utils.getAutoScaleHeight();
+const prompt = Modal.prompt;
 
-export default class MyInformation extends  Component {
+export default class MyInformation extends Component {
 
+    //构造函数
     constructor(props) {
         super(props);
         this.onButtonClick = this.onButtonClick.bind(this);
     }
+
 
     //下面的三个函数作用是为了解决Android平台下 点击返回按键 返回到上个页面
     componentWillMount() {
@@ -58,6 +63,10 @@ export default class MyInformation extends  Component {
 
     //点击事件
     onButtonClick(flag) {
+        if (flag == 'avatar') {
+
+        } else if (flag == '') {
+        }
 
     }
 
@@ -74,13 +83,24 @@ export default class MyInformation extends  Component {
                 </TouchableOpacity>
                 <View style={styles.dividerLine}/>
 
-                <TouchableOpacity onPress={() => this.onButtonClick('nickname')} activeOpacity={0.5}>
-                    <View style={styles.item}>
-                        <Text style={styles.itemText}>修改昵称</Text>
-                        <Icon1 name="ios-arrow-forward" size={40 * k} color="#6f6c6c"
-                               style={{marginRight: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
-                    </View>
-                </TouchableOpacity>
+                <View style={styles.item}>
+                    <Text style={styles.itemText} onClick={() => prompt('编辑昵称','这里是昵称',
+                    [
+                        { text: '取消'},
+                        {
+                            text: '提交',
+                            onPress: value => new Promise((resolve) => {
+                                Toast.info('修改成功', 1);
+                                setTimeout(() => {
+                                    resolve();
+                                    console.log('value: ${value}');
+                                }, 1000);
+                            }),
+                        },
+                    ])}>修改昵称</Text>
+                    <Icon1 name="ios-arrow-forward" size={40 * k} color="#6f6c6c"
+                           style={{marginRight: 36 * k, marginTop: 30 * k, marginBottom: 30 * k,}}/>
+                </View>
                 <View style={styles.dividerLine}/>
 
                 <TouchableOpacity onPress={() => this.onButtonClick('mobile')} activeOpacity={0.5}>

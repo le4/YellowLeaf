@@ -25,7 +25,6 @@ import Icon1 from 'react-native-vector-icons/EvilIcons';
 import {SegmentedControl, WingBlank} from 'antd-mobile';
 import Constant from '../../utils/Constant';
 import Utils from '../../utils/Utils'
-import GridView from "../../ui/GridView";
 
 var deviceWidth = Utils.getScreenWidth();
 var k = Utils.getAutoScaleHeight();
@@ -69,8 +68,8 @@ export default class Login extends Component {
     }
 
     //分段器页面改变
-    onChange = (key) => {
-        console.log('onChange', key);
+    onChange = (e) => {
+        console.log('onChange: ${e.nativeEvent.selectedSegmentIndex}');
     }
     //分段器值发生改变
     onValueChange = (value) => {
@@ -89,6 +88,8 @@ export default class Login extends Component {
                             values={['密码登录', '验证码登录']}
                             tintColor="#26b484"
                             style={{margin: 10, height: 60 * k, width: 400 * k, alignSelf: 'center'}}
+                            onChange={this.onChange}
+                            onValueChange={this.onValueChange}
                         />
                     </WingBlank>
                     <View style={styles.inputView}>
@@ -165,7 +166,7 @@ export default class Login extends Component {
                     <View style={{
                         flex: 1,
                         flexDirection: "row",
-                        marginTop: 50 * k,
+                        marginTop: 30 * k,
                         marginBottom: 10 * k,
                         alignItems: "center",
                         justifyContent: "center",
@@ -240,7 +241,6 @@ const styles = StyleSheet.create({
         height: 80 * k,
     },
     text_bottom: {
-        fontSize: 30 * k,
         color: "#26b484",
     },
     input: {
