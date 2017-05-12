@@ -40,17 +40,7 @@ var deviceWidth = Utils.getScreenWidth();
 var k = Utils.getAutoScaleHeight();
 
 //如果不是使用List.Item 作为children, 自定义picker格式
-const CustomChildren = props => (
-    <div
-        onClick={props.onClick}
-        style={{ backgroundColor: '#fff', padding: '0 0.3rem' }}
-    >
-        <div style={{ display: 'flex', height: '0.9rem', lineHeight: '0.9rem' }}>
-            <div style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{props.children}</div>
-            <div style={{ textAlign: 'right', color: '#888' }}>{props.extra}</div>
-        </div>
-    </div>
-);
+
 
 //性别选择框数据
 const sex = [
@@ -71,38 +61,21 @@ export default class MyProfile extends React.Component {
         cols: 1,
         pickerValue: [],
         asyncValue: [],
-        sValue: ['男'],
+        sValue: [],
         date: zhNow,
-        dpValue: null,
+        rxValue: null,
+        byValue: null,
         visible: false,
     };
-    onClick = () => {
-        setTimeout(() => {
-            this.setState({
-                data: sex,
-            });
-        });
-    };
 
-    日期选择框数据变化
-    onChange = (date) => {
+
+    //选择框数据变化
+    onChange = (data) => {
+        console.log('onChange', data);
         this.setState({
-            date,
+            data,
         });
     }
-
-    //要用在性别选择框的数据变化
-    onPickerChange = (val) => {
-        console.log(val);
-        let colNum = 1;
-        const d = [...this.state.data];
-        const asyncValue = [...val];
-        this.setState({
-            data: d,
-            cols: colNum,
-            asyncValue,
-        });
-    };
 
 
     constructor(props) {
@@ -153,7 +126,7 @@ export default class MyProfile extends React.Component {
                     {/*<View style={styles.dividerLine}/>*/}
 
                     <View style={styles.item}>
-                        <Text style={styles.itemText}>姓名:</Text>
+                        <Text style={styles.itemText}>姓名</Text>
                         <TextInput
                             style={styles.input}
                         />
@@ -161,13 +134,14 @@ export default class MyProfile extends React.Component {
                     <View style={styles.dividerLine}/>
 
 
-                    <WhiteSpace size="lg"/>
                     <List style={{backgroundColor: 'white'}} className="picker-list">
                         <Picker
                             data={sex}
                             cols={1}
                             title="选择性别"
-                            extra="请选择"
+                            extra=""
+                            value={this.state.sValue}
+                            onChange={v => this.setState({ sValue: v})}
                         >
                             <List.Item arrow="horizontal">性别</List.Item>
                         </Picker>
@@ -175,7 +149,7 @@ export default class MyProfile extends React.Component {
                     <View style={styles.dividerLine}/>
 
                     <View style={styles.item}>
-                        <Text style={styles.itemText}>大学:</Text>
+                        <Text style={styles.itemText}>大学</Text>
                         <TextInput
                             style={styles.input}
                         />
@@ -183,7 +157,7 @@ export default class MyProfile extends React.Component {
                     <View style={styles.dividerLine}/>
 
                     <View style={styles.item}>
-                        <Text style={styles.itemText}>专业:</Text>
+                        <Text style={styles.itemText}>专业</Text>
                         <TextInput
                             style={styles.input}
                         />
@@ -191,14 +165,13 @@ export default class MyProfile extends React.Component {
                     <View style={styles.dividerLine}/>
 
                     <View style={styles.item}>
-                        <Text style={styles.itemText}>年级:</Text>
+                        <Text style={styles.itemText}>年级</Text>
                         <TextInput
                             style={styles.input}
                         />
                     </View>
                     <View style={styles.dividerLine}/>
 
-                    <WhiteSpace size="lg"/>
                     <List
                         className="date-picker-list"
                         style={{backgroundColor: 'white'}}
@@ -206,16 +179,17 @@ export default class MyProfile extends React.Component {
                         <DatePicker
                             mode="date"
                             title="入学时间"
-                            extra="请选择"
+                            extra=""
                             minDate={minDate}
                             maxDate={maxDate}
+                            onChange={v => this.setState({ rxValue: v})}
+                            value={this.state.rxValue}
                         >
-                            <List.Item arrow="horizontal">入学时间</List.Item>
+                            <List.Item arrow="horizontal" >入学时间</List.Item>
                         </DatePicker>
                     </List>
                     <View style={styles.dividerLine}/>
 
-                    <WhiteSpace size="lg"/>
                     <List
                         className="date-picker-list"
                         style={{backgroundColor: 'white'}}
@@ -223,9 +197,11 @@ export default class MyProfile extends React.Component {
                         <DatePicker
                             mode="date"
                             title="毕业时间"
-                            extra="请选择"
+                            extra=""
                             minDate={minDate}
                             maxDate={maxDate}
+                            onChange={v => this.setState({ byValue: v})}
+                            value={this.state.byValue}
                         >
                             <List.Item arrow="horizontal">毕业时间</List.Item>
                         </DatePicker>
@@ -233,7 +209,7 @@ export default class MyProfile extends React.Component {
                     <View style={styles.dividerLine}/>
 
                     <View style={styles.item}>
-                        <Text style={styles.itemText}>电话:</Text>
+                        <Text style={styles.itemText}>电话</Text>
                         <TextInput
                             style={styles.input}
                         />
@@ -241,7 +217,7 @@ export default class MyProfile extends React.Component {
                     <View style={styles.dividerLine}/>
 
                     <View style={styles.item}>
-                        <Text style={styles.itemText}>学历:</Text>
+                        <Text style={styles.itemText}>学历</Text>
                         <TextInput
                             style={styles.input}
                         />
@@ -249,7 +225,7 @@ export default class MyProfile extends React.Component {
                     <View style={styles.dividerLine}/>
 
                     <View style={styles.item}>
-                        <Text style={styles.itemText}>学号:</Text>
+                        <Text style={styles.itemText}>学号</Text>
                         <TextInput
                             style={styles.input}
                         />
@@ -257,7 +233,7 @@ export default class MyProfile extends React.Component {
                     <View style={styles.dividerLine}/>
 
                     <View style={styles.item}>
-                        <Text style={styles.itemText}>困难等级:</Text>
+                        <Text style={styles.itemText}>困难等级</Text>
                         <TextInput
                             style={styles.input}
                         />
@@ -265,7 +241,7 @@ export default class MyProfile extends React.Component {
                     <View style={styles.dividerLine}/>
 
                     <View style={styles.item}>
-                        <Text style={styles.itemText}>兴趣爱好:</Text>
+                        <Text style={styles.itemText}>兴趣爱好</Text>
                         <TextInput
                             style={styles.input}
                         />
