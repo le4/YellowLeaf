@@ -186,7 +186,7 @@ export default class Home extends Component {
                                     width: 500 * k,
                                     fontSize: 24 * k,
                                     color: "#6f6c6c",
-                                    marginBottom: -5 * k,
+                                    marginBottom: -20 * k,
                                     height: 70 * k
                                 }}
                                 placeholder={'搜索职位/公司'}

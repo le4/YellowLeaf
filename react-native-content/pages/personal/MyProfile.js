@@ -21,11 +21,10 @@ import{
 } from 'react-native';
 
 
-
-import { DatePicker } from 'antd-mobile';
+import {DatePicker} from 'antd-mobile';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import { Picker, List, WhiteSpace } from 'antd-mobile';
+import {Picker, List, WhiteSpace} from 'antd-mobile';
 import Icon from 'react-native-vector-icons/EvilIcons';
 
 import Utils from '../../utils/Utils';
@@ -128,6 +127,7 @@ export default class MyProfile extends React.Component {
                     <View style={styles.item}>
                         <Text style={styles.itemText}>姓名</Text>
                         <TextInput
+                            underlineColorAndroid='transparent'
                             style={styles.input}
                         />
                     </View>
@@ -141,7 +141,7 @@ export default class MyProfile extends React.Component {
                             title="选择性别"
                             extra=""
                             value={this.state.sValue}
-                            onChange={v => this.setState({ sValue: v})}
+                            onChange={v => this.setState({sValue: v})}
                         >
                             <List.Item arrow="horizontal">性别</List.Item>
                         </Picker>
@@ -151,6 +151,7 @@ export default class MyProfile extends React.Component {
                     <View style={styles.item}>
                         <Text style={styles.itemText}>大学</Text>
                         <TextInput
+                            underlineColorAndroid='transparent'
                             style={styles.input}
                         />
                     </View>
@@ -182,10 +183,10 @@ export default class MyProfile extends React.Component {
                             extra=""
                             minDate={minDate}
                             maxDate={maxDate}
-                            onChange={v => this.setState({ rxValue: v})}
+                            onChange={v => this.setState({rxValue: v})}
                             value={this.state.rxValue}
                         >
-                            <List.Item arrow="horizontal" >入学时间</List.Item>
+                            <List.Item arrow="horizontal">入学时间</List.Item>
                         </DatePicker>
                     </List>
                     <View style={styles.dividerLine}/>
@@ -200,7 +201,7 @@ export default class MyProfile extends React.Component {
                             extra=""
                             minDate={minDate}
                             maxDate={maxDate}
-                            onChange={v => this.setState({ byValue: v})}
+                            onChange={v => this.setState({byValue: v})}
                             value={this.state.byValue}
                         >
                             <List.Item arrow="horizontal">毕业时间</List.Item>
@@ -310,9 +311,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         width: 550 * k,
         marginTop: 0,
-        marginBottom: 0,
+        marginBottom: -15 * k,
         marginLeft: 20 * k,
-
     },
 
 

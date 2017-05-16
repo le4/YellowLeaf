@@ -103,6 +103,7 @@ export default class TitleView extends Component {
                                 fontSize: 22 * k,
                                 color: "#6f6c6c",
                                 height: 70 * k,
+                                marginBottom: -20 * k,
                             }}
                             placeholder={this.hintText}
                             underlineColorAndroid="transparent"

@@ -20,6 +20,7 @@ import Home from './Home';
 import Message from '../message/Message';
 import Personal from '../personal/Personal';
 
+
 export default class AppMain extends Component {
     constructor(props) {
         super(props);
